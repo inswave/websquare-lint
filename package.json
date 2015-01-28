@@ -48,6 +48,9 @@
     "grunt-cli": "^0.1.13",
     "grunt-shell": "^1.1.1"
   },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
   "keywords": [
     "gruntplugin",
     "lint",
