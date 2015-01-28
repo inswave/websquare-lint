@@ -140,11 +140,26 @@ module.exports = function(grunt) {
 				}
 
 				var output = formatter(results);
-				var fileOutput = fileFormatter(results);
+				var fileOutput = "";
+//				var fileOutput = fileFormatter(results);
 
 				results.forEach(function(result) {
+
 				    var messages = result.messages;
 				    total += messages.length;
+
+				    messages.forEach(function(message) {
+
+				        fileOutput += result.filePath + ": ";
+				        fileOutput += "line " + (message.line || 0);
+				        fileOutput += ", col " + (message.column || 0);
+				        fileOutput += ", " + getMessageType(message);
+				        fileOutput += " - " + message.message;
+				        fileOutput += message.ruleId ? " (" + message.ruleId + ")" : "";
+				        fileOutput += "\n";
+
+				    });
+
 				});
 
 				if (options.outputFile) {
@@ -158,7 +173,7 @@ module.exports = function(grunt) {
                     fs.appendFileSync(resultFile, logMsg);
                     fs.appendFileSync(resultFile, fileOutput + "\n\n");
                     if( total > 0 ) {
-                    	fs.appendFileSync(summaryFile, fileOutput + "\n\n");
+                    	fs.appendFileSync(summaryFile, fileOutput);
                 	}
 				}
 /*
@@ -239,8 +254,15 @@ module.exports = function(grunt) {
                     if( nameList[i] == nodeName ) return true;
                 };
                 return false;
-            }
-            ;
+            },
+            getMessageType = function(message) {
+			    if (message.fatal || message.severity === 2) {
+			        return "Error";
+			    } else {
+			        return "Warning";
+			    }
+			}
+			;
 
 
             // Whether to output the report to a file
