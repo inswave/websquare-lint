@@ -1,10 +1,21 @@
 {
     "rules": {
-        "no-websquare": 0,
+/* option for spa */
         "no-undef": 1,
     	"no-use-before-define": 1,
-        "uninitialized-global-variable": 1,
+        "uninitialized-global-variable": 0,
 
+/* grammer check  */
+        "valid-typeof": 0,
+        "no-sequences":0,
+        "no-sparse-arrays":0,
+        "no-octal":0,
+        "no-cond-assign":0,
+        "no-fallthrough":0,
+        "no-dupe-keys":0,
+
+/* etc */
+        "no-websquare": 0,
     	"no-constant-condition":0,
     	"no-unreachable": 0,
     	"no-delete-var": 0,
