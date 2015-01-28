@@ -202,6 +202,12 @@
 		<script type="javascript"><![CDATA[
 			// page function object
 			var abcdefg;
+
+			var tttsss =  undefined;
+			
+
+
+			alert("aaa");
 			var PageParam = {
 				itemCd: "",			// 상품코드
 				from: "",			// 목록 Key

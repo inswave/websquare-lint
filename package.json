@@ -40,6 +40,7 @@
       "maxmin": "~0.1.0",
       "pretty-data": "~0.40.0",
       "underscore.string": "~2.3.3",
+      "text-table": "~0.2.0",
       "xmldom" : "~0.1.19"
   },
   "devDependencies": {

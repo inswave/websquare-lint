@@ -1,8 +1,8 @@
 {
     "rules": {
         "no-websquare": 0,
-        "no-undef": 0,
-    	"no-use-before-define": 0,
+        "no-undef": 1,
+    	"no-use-before-define": 1,
         "uninitialized-global-variable": 1,
 
     	"no-constant-condition":0,

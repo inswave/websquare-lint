@@ -27,6 +27,16 @@ module.exports = function(grunt) {
                 },
                 results:'result/result.txt'
             },
+            compile_spa: {
+				options: {
+					configFile: 'conf/eslint_spa.json',
+					rulePaths: ['conf/rules']
+				},
+                files: {
+                    'tmp/sample.xml': ['test/sample.xml']
+                },
+                results:'result/result.txt'
+            },
             traverse: {
 				options: {
 					configFile: 'conf/eslint.json',
@@ -37,15 +47,23 @@ module.exports = function(grunt) {
                 ],
                 result:'result/result.txt'
             },
-            options: {
-//                jshintrc : true
-                jshintrc: 'jshintrc_spa'
-            }
+            traverse_spa: {
+				options: {
+					configFile: 'conf/eslint_spa.json',
+					rulePaths: ['conf/rules']
+				},
+                files: [
+                    {expand: true, cwd: 'src/', src: ['**'], dest: 'dest/'}
+                ],
+                result:'result/result.txt'
+            },
         }
     });
 
     grunt.loadTasks('tasks');
     grunt.registerTask('test', ['clean:tests', 'websquarelint:compile']);
     grunt.registerTask('traverse', ['clean:traverse', 'websquarelint:traverse']);
+    grunt.registerTask('test_spa', ['clean:tests', 'websquarelint:compile_spa']);
+    grunt.registerTask('traverse_spa', ['clean:traverse', 'websquarelint:traverse_spa']);
     grunt.registerTask('default', ['test']);
 };

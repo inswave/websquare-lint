@@ -110,13 +110,12 @@ module.exports = function(grunt) {
                     return filepath;
                 }
             },
-            esLint = function ( file, options, globalObj ) {
+            esLint = function ( srcfile, file, options, globalObj ) {
 				var engine = new eslint.CLIEngine(options);
 				var results = engine.executeOnFiles([file]).results;
-				var formatter = engine.getFormatter(options.format);
-				var fileFormatter = engine.getFormatter("compact");
+				var formatter = require("./formatters/stylish");
+//				var formatter = engine.getFormatter(options.format);
 				var total = 0;
-
 
                 if(globalObj) {
                     logMsg += '    global object : ';
@@ -150,7 +149,7 @@ module.exports = function(grunt) {
 
 				    messages.forEach(function(message) {
 
-				        fileOutput += result.filePath + ": ";
+				        fileOutput += srcfile + ": ";
 				        fileOutput += "line " + (message.line || 0);
 				        fileOutput += ", col " + (message.column || 0);
 				        fileOutput += ", " + getMessageType(message);
@@ -166,23 +165,17 @@ module.exports = function(grunt) {
 					grunt.file.write(options.outputFile, logMsg);
 					grunt.file.write(options.outputFile, fileOutput);
 				} else {
-                    grunt.log.writeln('\n\n' + file  + ' | ' + total + ' lints found.' +'\n');
-                    grunt.log.write(logMsg);
+                    grunt.log.writeln('\n\n' + srcfile  + ' | ' + total + ' lints found.');
+//                    grunt.log.write(logMsg);
 					grunt.log.write(output);
-                    fs.appendFileSync(resultFile, '\n\n' + file  + ' | ' + total + ' lints found.' +'\n');
+                    fs.appendFileSync(resultFile, '\n\n' + srcfile  + ' | ' + total + ' lints found.' +'\n');
                     fs.appendFileSync(resultFile, logMsg);
                     fs.appendFileSync(resultFile, fileOutput + "\n\n");
                     if( total > 0 ) {
+	                    fs.appendFileSync(summaryFile, '\n\n' + srcfile  + ' | ' + total + ' lints found.' +'\n');
                     	fs.appendFileSync(summaryFile, fileOutput);
                 	}
 				}
-/*
-	return results.some(function (result) {
-		return result.messages.some(function (message) {
-			return message.severity === 2;
-		});
-	}) ? 1 : 0;
-*/
             },
             pad = function(msg,length) {
                 while (msg.length < length) {
@@ -292,6 +285,7 @@ module.exports = function(grunt) {
         var pathIdx = resultFile.lastIndexOf('/')
         grunt.file.mkdir( resultFile.substring(0, pathIdx) );
         grunt.log.warn('result : ' + resultFile + '\n');
+        grunt.log.warn('summary : ' + summaryFile + '\n');
 
         this.files.forEach( function( filePair ) {
             isExpandedPair = filePair.orig.expand || false;
@@ -322,10 +316,10 @@ module.exports = function(grunt) {
                                 if( fileType === 'XML' ) {
                                     var sourceStr1 =  sourceStr + "";
                                     var strIdx = sourceStr1.indexOf('\n')
-                                    grunt.log.warn( fileType + ' do eslint ' + src.cyan + ' -> ' + dest.cyan + ', contents : ' + (strIdx > 0 ? sourceStr1.substring(0,strIdx) : sourceStr1) );
+                                    grunt.verbose.writeln( fileType + ' do eslint ' + src.cyan + ' -> ' + dest.cyan + ', contents : ' + (strIdx > 0 ? sourceStr1.substring(0,strIdx) : sourceStr1) );
                                     if(sourceStr1.toLowerCase().indexOf("euc-kr") > 0 ) {
                                         try {
-                                            grunt.log.warn('convert euc-kr to utf-8');
+                                            grunt.verbose.writeln('convert euc-kr to utf-8');
                                             sourceStr = euckr2utf8.convert(sourceStr).toString('UTF-8');
                                             sourceStr = sourceStr.replace( /EUC[-]KR/, 'UTF-8' );
                                         } catch(e) {
@@ -365,9 +359,9 @@ module.exports = function(grunt) {
 
 
                                 } else if( fileType === "JS" ) {
-                                    grunt.log.warn( fileType + ' do eslint ' + src.cyan + ' -> ' + dest.cyan );
+                                    grunt.verbose.writeln( fileType + ' do eslint ' + src.cyan + ' -> ' + dest.cyan );
                                     try {
-                                        grunt.log.warn('convert euc-kr to utf-8');
+                                        grunt.verbose.writeln('convert euc-kr to utf-8');
                                         sourceStr = euckr2utf8.convert(sourceStr).toString('UTF-8');
                                         sourceStr = sourceStr.replace( /EUC[-]KR/, 'UTF-8' );
                                     } catch(e) {
@@ -387,12 +381,12 @@ module.exports = function(grunt) {
                             if( min.length < 1 ) {
                                 grunt.log.warn( 'Destination not written because folder ' + src.cyan + ' was empty.' );
                             } else {
-                                grunt.log.warn(dest);
+                                grunt.verbose.writeln(dest);
                                 grunt.file.write( dest, min );
                                 grunt.verbose.writeln( fileType + ' eslint ' + src.cyan + ' -> ' + dest.cyan );
                                 grunt.verbose.writeln( maxmin( sourceStr, min ) );
                                 countWithFileType( fileType );
-                                esLint(dest, options, globalObj);
+                                esLint(src, dest, options, globalObj);
                             }
                         } else {
                             grunt.verbose.writeln( src.cyan + ' is skiped' );
