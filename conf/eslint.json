@@ -373,10 +373,15 @@
         Debug: 0,
         opera: 0,
         prompt: 0,
-        "DWSAjax": 1,
+
+        "unescape":0,
+        "escape":0,
+
         "WebSquare": 1,
         "$": 1,
         "$w": 1,
+
+        "DWSAjax": 1,
         "dwsCommon": 1,
         "assetRemainsGenerator": 1,
         "dwsSession": 1,
