@@ -1,6 +1,6 @@
 /*
- * websquare-min
- * https://github.com/inswave/websquare-min
+ * websquare-lint
+ * https://github.com/inswave/websquare-lint
  *
  * Copyright (c) 2013 inswave
  * Licensed under the MIT license.
