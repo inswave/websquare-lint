@@ -54,6 +54,7 @@
   "keywords": [
     "gruntplugin",
     "lint",
+    "eslint",
     "validate",
     "report",
     "jshint",
