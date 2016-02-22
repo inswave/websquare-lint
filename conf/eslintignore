@@ -1,0 +1,9 @@
+../websquare/externalJS/*.js
+../websquare/externalJS/**
+../websquare/fiddle/*.js
+../websquare/fiddle/**
+
+**/websquare/externalJS/*.js
+**/websquare/externalJS/**
+**/websquare/fiddle/*.js
+**/websquare/fiddle/**

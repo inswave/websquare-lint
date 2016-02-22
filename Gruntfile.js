@@ -13,8 +13,8 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         clean: {
-            tests: ['tmp', 'result'],
-            traverse: ['dest', 'result']
+            tests: ['tmp', 'excludeList_generated', 'result'],
+            traverse: ['dest', 'excludeList_generated', 'result']
         },
         websquarelint: {
             compile: {
@@ -40,6 +40,8 @@ module.exports = function(grunt) {
             traverse: {
 				options: {
 					configFile: 'conf/eslint.json',
+					format: 'formatters/custom.js',
+					ignorePath : 'conf/eslintignore',
 					rulePaths: ['conf/rules']
 				},
                 files: [
