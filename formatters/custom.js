@@ -275,7 +275,7 @@ module.exports = function(results) {
             output += "\n";
 
             if( sourceModified ) {
-                var modifiedSourceFile = basePath + separator + "modified" +relativeFilePath;
+                var modifiedSourceFile = lintHomePath + separator + "modified" + separator + relativeFilePath;
 
                 console.info("result.filePath : " + result.filePath);
                 console.info("modifiedSourceFile : " + modifiedSourceFile);
