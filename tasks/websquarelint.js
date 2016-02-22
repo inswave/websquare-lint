@@ -113,8 +113,8 @@ module.exports = function(grunt) {
             esLint = function ( srcfile, file, options, globalObj ) {
 				var engine = new eslint.CLIEngine(options);
 				var results = engine.executeOnFiles([file]).results;
-				var formatter = require("./formatters/stylish");
-//				var formatter = engine.getFormatter(options.format);
+//				var formatter = require("./formatters/stylish");
+				var formatter = engine.getFormatter(options.format);
 				var total = 0;
 
                 if(globalObj) {
