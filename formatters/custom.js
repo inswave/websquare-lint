@@ -136,6 +136,7 @@ module.exports = function(results) {
         if(relativeFilePath.indexOf(basePath) == 0) {
         	relativeFilePath = relativeFilePath.substring(basePathIdx);
         }
+//        console.log(result.filePath);
 //        console.log(relativeFilePath);
 
         try {
@@ -275,11 +276,11 @@ module.exports = function(results) {
             output += "\n";
 
             if( sourceModified ) {
-                var modifiedSourceFile = lintHomePath + separator + "modified" + separator + relativeFilePath;
+                var modifiedSourceFile = lintHomePath + separator + "modified" + relativeFilePath;
 
-                console.info("result.filePath : " + result.filePath);
-                console.info("modifiedSourceFile : " + modifiedSourceFile);
-                var pathIdx = modifiedSourceFile.lastIndexOf(separator)
+//                console.info("result.filePath : " + result.filePath);
+//                console.info("modifiedSourceFile : " + modifiedSourceFile);
+                var pathIdx = modifiedSourceFile.lastIndexOf('/')
                 mkdirp.sync( modifiedSourceFile.substring(0, pathIdx) );
 
                 fs.writeFileSync(modifiedSourceFile, sourceArr.join("\n"));
