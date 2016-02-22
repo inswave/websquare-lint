@@ -46,7 +46,6 @@
         "no-extra-semi": 0,
         "no-space-before-semi": 0,
         "comma-spacing": 0,
-        "new-cap": 0,
         "eol-last": 0
     },
     "globals": {

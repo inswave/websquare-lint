@@ -313,8 +313,8 @@ module.exports = function(grunt) {
                                 grunt.verbose.writeln( fileType + ' do eslint ' + src.cyan + ' -> ' + dest.cyan );
 
                                 sourceStr = fs.readFileSync( src );
+                                var sourceStr1 =  sourceStr + "";
                                 if( fileType === 'XML' ) {
-                                    var sourceStr1 =  sourceStr + "";
                                     var strIdx = sourceStr1.indexOf('\n')
                                     grunt.verbose.writeln( fileType + ' do eslint ' + src.cyan + ' -> ' + dest.cyan + ', contents : ' + (strIdx > 0 ? sourceStr1.substring(0,strIdx) : sourceStr1) );
                                     if(sourceStr1.toLowerCase().indexOf("euc-kr") > 0 ) {
@@ -323,8 +323,8 @@ module.exports = function(grunt) {
                                             sourceStr = euckr2utf8.convert(sourceStr).toString('UTF-8');
                                             sourceStr = sourceStr.replace( /EUC[-]KR/, 'UTF-8' );
                                         } catch(e) {
-                                            logMsg += "exception occured. use original : " + src + "\n";
-                                            grunt.log.warn('exception occured. use original');
+                                            logMsg += "exception occured during convert euc-kr to utf-8. use original : " + src + "\n";
+                                            grunt.log.warn('exception occured during convert euc-kr to utf-8. use original');
                                             sourceStr = sourceStr1;
                                         }
                                     }
@@ -365,7 +365,7 @@ module.exports = function(grunt) {
                                         sourceStr = euckr2utf8.convert(sourceStr).toString('UTF-8');
                                     } catch(e) {
                                         logMsg += "exception occured during convert euc-kr to utf-8. use original : " + src + "\n";
-                                        grunt.log.warn('exception occured. use original');
+                                        grunt.log.warn('exception occured during convert euc-kr to utf-8. use original');
                                         sourceStr = sourceStr1;
                                     }
                                     sourceStr += grunt.util.normalizelf( grunt.util.linefeed );

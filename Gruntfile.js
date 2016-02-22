@@ -65,5 +65,5 @@ module.exports = function(grunt) {
     grunt.registerTask('traverse', ['clean:traverse', 'websquarelint:traverse']);
     grunt.registerTask('test_spa', ['clean:tests', 'websquarelint:compile_spa']);
     grunt.registerTask('traverse_spa', ['clean:traverse', 'websquarelint:traverse_spa']);
-    grunt.registerTask('default', ['test']);
+    grunt.registerTask('default', ['traverse']);
 };
