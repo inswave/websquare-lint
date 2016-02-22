@@ -1,0 +1,27 @@
+{
+  "name": "eslintformatter",
+  "version": "0.1.0",
+  "author": {
+    "name": "kimwooglae",
+    "email": "wlkim@inswave.com"
+  },
+  "description": "eslint formatter for WebSquare.",
+  "dependencies": {
+  	"mkdirp" : "~0.5.0",
+    "iconv": "^2.1.4",
+    "chalk": "~0.5.1",
+    "js-yaml": "^3.2.5",
+    "text-table": "~0.2.0",
+    "xml-escape": "~1.0.0"
+  },
+  "devDependencies": {
+  },
+  "keywords": [
+    "lint",
+    "formatter"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  }
+}
