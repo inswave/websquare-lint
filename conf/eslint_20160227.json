@@ -12,7 +12,7 @@
   'no-dupe-keys'                   :1,
 
 // recommended rules (managed with excludeList)
-  'no-eval'                   :0, //     eval should be confirmed by team manager.
+  'no-eval'                   :1, //     eval should be confirmed by team manager.
   'no-script-url'             :1, //     2  problems
   'no-new-wrappers'           :1, //     6  problems
   'no-cond-assign'            :1, //     6  problems
@@ -31,16 +31,16 @@
   'no-constant-condition'     :1, //    16  problems
   'no-native-reassign'        :1, //     1  problem
   'no-console'                :1, //     3  problems
-  'no-redeclare'              :0, //  2032  problems
-  'no-unused-vars'            :0, //   987  problems
-  'curly'                     :0, //   608  problems
+  'no-redeclare'              :1, //  2032  problems
+  'no-unused-vars'            :1, //   987  problems
+  'curly'                     :1, //   608  problems
   'no-catch-shadow'           :1, //   258  problems
   'no-shadow'                 :1, //   257  problems
   'no-use-before-define'      :1, //   143  problems
   'no-fallthrough'            :1, //    23  problems
 
 // recommended rules (should be refactoring)
-  'no-undef'                  :0, //  652  problems
+  'no-undef'                  :1, //  652  problems
   'no-unreachable'            :1, //  228  problems
   'semi'                      :1, //  6082  problems
 
@@ -73,7 +73,7 @@
 
 
 // not yet decided
-  'eqeqeq'                    :0
+  'eqeqeq'                    :1
     },
     "globals": {
     // browser
@@ -116,7 +116,5 @@
         '$l':0,
         'imports':0,
         'WebSquareLang':1,
-		'ngmf' : 1,
-		'scwin' : 1
     } 
 }

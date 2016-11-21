@@ -341,7 +341,7 @@ module.exports = function(results) {
         var pathIdx = generatedExcludeListPath.lastIndexOf(separator)
 
         
-        fs.appendFileSync(generatedExcludeListPath, table( generatedExcludeList[result] , { align: [ 'l', 'l', 'l','l', 'l', 'l' ] }));
+        fs.appendFileSync(generatedExcludeListPath, table( generatedExcludeList[result] , { align: [ 'l', 'l', 'l','l', 'l', 'l' ] }) + "\n");
 //        fs.writeFileSync(generatedExcludeListPath, generatedExcludeList[result].join("\n"));
     }
     return total > 0 ? output : "";

@@ -18,42 +18,42 @@ module.exports = function(grunt) {
         },
         websquarelint: {
             compile: {
-				options: {
-					configFile: 'conf/eslint.json',
-					rulePaths: ['conf/rules']
-				},
+                options: {
+                    configFile: 'conf/eslint.json',
+                    rulePaths: ['conf/rules']
+                },
                 files: {
                     'tmp/sample.xml': ['test/sample.xml']
                 },
                 results:'result/result.txt'
             },
             compile_spa: {
-				options: {
-					configFile: 'conf/eslint_spa.json',
-					rulePaths: ['conf/rules']
-				},
+                options: {
+                    configFile: 'conf/eslint_spa.json',
+                    rulePaths: ['conf/rules']
+                },
                 files: {
                     'tmp/sample.xml': ['test/sample.xml']
                 },
                 results:'result/result.txt'
             },
             traverse: {
-				options: {
-					configFile: 'conf/eslint.json',
-					format: 'formatters/custom.js',
-					ignorePath : 'conf/eslintignore',
-					rulePaths: ['conf/rules']
-				},
+                options: {
+                    configFile: 'conf/eslint.json',
+                    format: 'formatters/custom.js',
+                    ignorePath : 'conf/eslintignore',
+                    rulePaths: ['conf/rules']
+                },
                 files: [
                     {expand: true, cwd: 'src/', src: ['**'], dest: 'dest/'}
                 ],
                 result:'result/result.txt'
             },
             traverse_spa: {
-				options: {
-					configFile: 'conf/eslint_spa.json',
-					rulePaths: ['conf/rules']
-				},
+                options: {
+                    configFile: 'conf/eslint_spa.json',
+                    rulePaths: ['conf/rules']
+                },
                 files: [
                     {expand: true, cwd: 'src/', src: ['**'], dest: 'dest/'}
                 ],
